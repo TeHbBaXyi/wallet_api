@@ -4,7 +4,7 @@ from repository import wallets as wallet_repository
 
 
 def add_income(operation: OperationsRequest):
-    if wallet_repository.is_wallet_exist(operation.wallet_name):
+    if not wallet_repository.is_wallet_exist(operation.wallet_name):
         raise HTTPException(
             status_code=404,
             detail=f"Wallet {operation.wallet_name} not found")
@@ -18,7 +18,7 @@ def add_income(operation: OperationsRequest):
     }
 
 def add_expense(operation: OperationsRequest):
-    if wallet_repository.is_wallet_exist(operation.wallet_name):
+    if not wallet_repository.is_wallet_exist(operation.wallet_name):
         raise HTTPException(
             status_code=404,
             detail=f"Wallet {operation.wallet_name} not found"
