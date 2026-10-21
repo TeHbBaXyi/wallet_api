@@ -1,8 +1,5 @@
 from decimal import Decimal
-
 from sqlalchemy.orm import Session
-
-from database import SessionLocal
 from models import Wallet
 
 
@@ -30,6 +27,6 @@ def get_all_wallets(db: Session) -> list[Wallet]:
 def create_wallet(db: Session, wallet_name: str, amount: Decimal) -> Wallet:
         wallet = Wallet(name=wallet_name, balance=amount)
         db.add(wallet)
-        db.refresh(wallet)
+        db.flush()
         return wallet
 
